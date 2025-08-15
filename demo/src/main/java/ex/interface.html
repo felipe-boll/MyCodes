@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SongSheet Hub - Bohemian Rhapsody</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; }
+        .instruments { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .instrument-btn { padding: 10px 20px; border: 1px solid #ccc; cursor: pointer; background: #eee; }
+        .instrument-btn.active { background: #007bff; color: white; }
+        .sheet-music { text-align: center; margin-bottom: 20px; }
+        .sheet-music img { max-width: 100%; height: auto; }
+        .audio-player { text-align: center; margin-bottom: 20px; }
+        .comments { margin-bottom: 20px; }
+        .comment { border-bottom: 1px solid #eee; padding: 10px 0; }
+        .recommendations { display: flex; justify-content: space-around; }
+        .rec-card { width: 30%; background: #f9f9f9; padding: 10px; text-align: center; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bohemian Rhapsody - Queen</h1>
+        <p>Rating: ⭐⭐⭐⭐⭐ (Top-rated for learning)</p>
+        
+        <div class="instruments">
+            <button class="instrument-btn active" onclick="selectInstrument('piano')">Piano</button>
+            <button class="instrument-btn" onclick="selectInstrument('guitar')">Guitar</button>
+            <button class="instrument-btn" onclick="selectInstrument('vocals')">Vocals</button>
+            <button class="instrument-btn" onclick="selectInstrument('drums')">Drums</button>
+        </div>
+        
+        <div class="sheet-music">
+            <h2>Sheet Music for <span id="current-instrument">Piano</span></h2>
+            <!-- Placeholder: In real app, load dynamic MusicXML or PDF -->
+            <img src="https://via.placeholder.com/800x400?text=Piano+Sheet+Music" alt="Sheet Music">
+        </div>
+        
+        <div class="audio-player">
+            <h2>Isolated Audio for <span id="current-audio">Piano</span></h2>
+            <!-- Placeholder audio; in real app, use stems from AI separation -->
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p>Tip: Loop sections or slow down playback here.</p>
+        </div>
+        
+        <div class="comments">
+            <h2>User Tips & Comments</h2>
+            <div class="comment">User1: Great for beginners! Focus on the arpeggios in the intro.</div>
+            <div class="comment">User2: The piano part is tricky at 2:30—practice slowly.</div>
+            <textarea placeholder="Add your tip..."></textarea>
+            <button>Submit</button>
+        </div>
+        
+        <div class="recommendations">
+            <h2>Similar Songs</h2>
+            <div class="rec-card">
+                <h3>Stairway to Heaven - Led Zeppelin</h3>
+                <p>Instruments: Guitar, Flute</p>
+                <button>View</button>
+            </div>
+            <div class="rec-card">
+                <h3>Hotel California - Eagles</h3>
+                <p>Instruments: Guitar, Vocals</p>
+                <button>View</button>
+            </div>
+            <div class="rec-card">
+                <h3>Imagine - John Lennon</h3>
+                <p>Instruments: Piano</p>
+                <button>View</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectInstrument(instrument) {
+            document.querySelectorAll('.instrument-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('current-instrument').textContent = instrument.charAt(0).toUpperCase() + instrument.slice(1);
+            document.getElementById('current-audio').textContent = instrument.charAt(0).toUpperCase() + instrument.slice(1);
+            // In real app: Update sheet image and audio src dynamically
+            document.querySelector('.sheet-music img').src = `https://via.placeholder.com/800x400?text=${instrument.charAt(0).toUpperCase() + instrument.slice(1)}+Sheet+Music`;
+        }
+    </script>
+</body>
+</html>
