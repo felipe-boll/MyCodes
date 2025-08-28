@@ -1,2 +1,2 @@
 Um aplicativo web com o proposito de prover letras com notas musicas para diferentes instrumentos para fins de aprendizagem.
-Com opções de login, selecionar musicas, adicionar musicas  
+Com opções de login, selecionar musicas, adicionar musicas
