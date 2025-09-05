@@ -1,4 +1,4 @@
-package encapsulamento;
+package ex.LP2.encapsulamento;
 
 public class Diretor {
     private String nome;
