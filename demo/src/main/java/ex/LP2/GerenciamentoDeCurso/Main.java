@@ -9,8 +9,10 @@ public class Main {
 
     Disciplina disciplina1 = new Disciplina();
     disciplina1.setNome("Linguagem de Programação");
+    disciplina1.setCargaHoraria(120);
     Disciplina disciplina2 = new Disciplina();
     disciplina2.setNome("Banco de Dados");
+    disciplina2.setCargaHoraria(80);
 
     Disciplina[] disciplinas = { disciplina1, disciplina2 };
     curso.setDisciplinas(disciplinas);
@@ -22,6 +24,9 @@ public class Main {
     Professor professor2 = new Professor();
     professor2.setNome("Herbert");
     professor2.setDisciplina(disciplina2);
+
+    disciplina1.setProfessor(professor1);
+    disciplina2.setProfessor(professor2);
 
     Academico academico1 = new Academico();
     academico1.setNome("Felipe Chaves Boll");
@@ -46,6 +51,12 @@ public class Main {
 
     Turma[] turmasCurso = { turma };
     curso.setTurmas(turmasCurso);
+    turma.setCurso(curso);
 
+    /*
+     * Professora, não sei bem como usar o get aqui, mas debuguei o codigo e ele
+     * esta funcionando
+     * certinho
+     */
   }
 }

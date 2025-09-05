@@ -2,6 +2,7 @@ package ex.LP2.GerenciamentoDeCurso;
 
 public class Disciplina {
     private String nome;
+    // Em horas
     private int cargaHoraria;
     private Professor professor;
 

@@ -2,7 +2,9 @@ package ex.LP2.GerenciamentoDeCurso;
 
 public class Curso {
     private String nome;
+    // Em meses
     private int duracao;
+    // Preço
     private int mensalidade;
     private Disciplina[] disciplinas;
     private Turma[] turmas;
