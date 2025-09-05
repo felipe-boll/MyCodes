@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Frases virando botões</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #container button {
+      margin: 5px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #container button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>Digite uma frase e cada palavra vira um botão</h2>
+  <input id="inputFrase" type="text" placeholder="Digite uma frase" style="width:300px" />
+  <button onclick="adicionarFrase()">Transformar</button>
+
+  <div id="container"></div>
+
+  <script>
+    function adicionarFrase() {
+      const input = document.getElementById("inputFrase");
+      const frase = input.value.trim();
+
+      if (frase !== "") {
+        // Quebra a frase em palavras (separa por espaços)
+        const palavras = frase.split(/\s+/);
+
+        // Para cada palavra, cria um botão
+        palavras.forEach(palavra => {
+          const botao = document.createElement("button");
+          botao.textContent = palavra;
+          botao.onclick = () => alert("Você clicou em: " + palavra);
+          document.getElementById("container").appendChild(botao);
+        });
+
+        // Limpar input
+        input.value = "";
+        input.focus();
+      }
+    }
+  </script>
+</body>
+</html>
