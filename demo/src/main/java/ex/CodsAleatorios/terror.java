@@ -22,13 +22,13 @@ public class terror {
     public static void medo(String historiaTerror, String[] reacoes){
         String reacao = " ";
 
-        if (historiaTerror.equals("Buu!!!")) {
+        if (historiaTerror.equals("buu")) {
             reacao = "AAAAAHHHHH!!!! QUE MEDO!!!\nDesito voce ganhou, só não faz isso de novo por favor";
-            System.out.printf("\n%s\n",reacao);
         } else{
             reacao = reacoes[random.nextInt(5)];
-            System.out.printf("\n%s\n",reacao);
         }
+
+        System.out.printf("\n%s\n",reacao);
     }
 
     public static void main(String[] args) {
@@ -36,11 +36,11 @@ public class terror {
         String[] reacoes = reacoes();
         
         while (true) {
-            String historiaTerror = tecladoScanner.nextLine();
+            String historiaTerror = tecladoScanner.nextLine().toLowerCase();
 
             medo(historiaTerror, reacoes);
 
-            if (historiaTerror.equals("Buu!!!")) {
+            if (historiaTerror.equals("buu")) {
                 break;
             }
 
