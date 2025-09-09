@@ -14,6 +14,8 @@ public class App {
 
         pessoa.getEndereco().getRua();
 
+        // teste
+
        
     }
 }
