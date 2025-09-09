@@ -13,9 +13,6 @@ public class App {
         pessoa.setEndereco(endereco);
 
         pessoa.getEndereco().getRua();
-
-        // teste12
-
        
     }
 }
