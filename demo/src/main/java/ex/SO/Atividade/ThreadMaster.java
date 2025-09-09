@@ -1,5 +1,7 @@
 package ex.SO.Atividade;
 
+import ex.SO.Modelo.ThreadCalc;
+
 public class ThreadMaster {
     public void letsDoSomeCalc(){
         double[] vet = new double[10];
@@ -10,6 +12,10 @@ public class ThreadMaster {
         for(int i = 0; i < cpu_threads; i++) {
             vet_threads[i] = new Thread(new ThreadCalc(i, vet, cpu_threads));
             vet_threads[i].start();
+        }
+
+        for (int i = 0; i < vet.length; i++) {
+            System.out.println(vet[i] + " ");
         }
     }
 }
