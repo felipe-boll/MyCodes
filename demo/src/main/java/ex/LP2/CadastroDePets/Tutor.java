@@ -2,38 +2,15 @@ package ex.LP2.CadastroDePets;
 
 import java.util.ArrayList;
 
-public class Tutor {
-    private String nome;
-    private String cpf;
-    private String email;
+public class Tutor extends Pessoa {
     private ArrayList<Pet> pets = new ArrayList<>();
     private ArrayList<Servico> servicos = new ArrayList<>();
     
-    public Tutor(){
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public Tutor(String nome, String cpf, String email, String telefone, int idade, String endereco, ArrayList<Pet> pets, ArrayList<Servico> servicos) {
+        super(nome, cpf, email, telefone, idade, endereco);
+        this.pets = pets;
+        this.servicos = servicos;
+        
     }
 
     public ArrayList<Pet> getPets() {

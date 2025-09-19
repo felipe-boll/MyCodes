@@ -11,9 +11,17 @@ public class Pet {
     private double peso;
     private Tutor tutor;
     private ArrayList<Servico> servico = new ArrayList<>();
+    private Situacao situacao;
 
 
     public Pet(){
+        this.nome = nome;
+        this.raca = raca;
+        this.sexo = sexo;
+        this.idade = idade;
+        this.peso = peso;
+        this.tutor = tutor;
+        this.situacao = situacao.EM_ESPERA;
     }
 
     public enum Situacao{
