@@ -1,14 +1,17 @@
 package ex.LP2.CadastroDePets;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Pet {
     private String nome;
     private String raca;
-    private List<String> alergia;
+    private String sexo;
+    private String idade;
+    private ArrayList<String> alergia = new ArrayList<>();
     private double peso;
     private Tutor tutor;
-    private List<Servico> servico;
+    private ArrayList<Servico> servico = new ArrayList<>();
+
 
     public Pet(){
     }
@@ -49,19 +52,51 @@ public class Pet {
         this.raca = raca;
     }
 
-    public List<String> getAlergia() {
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+
+    public ArrayList<String> getAlergia() {
         return alergia;
     }
 
-    public void setAlergia(List<String> alergia) {
+    public void setAlergia(ArrayList<String> alergia) {
         this.alergia = alergia;
     }
 
-    public List<Servico> getServico() {
+    public void addAlergia(String alergia) {
+        this.alergia.add(alergia);
+    }
+
+    public void removeAlergia(String alergia) {
+        this.alergia.remove(alergia);
+    }
+
+    public ArrayList<Servico> getServico() {
         return servico;
     }
 
-    public void setServico(List<Servico> servico) {
+    public void setServico(ArrayList<Servico> servico) {
         this.servico = servico;
+    }
+
+    public void addServico(Servico servico) {
+        this.servico.add(servico);
+    }
+    
+    public void removeServico(Servico servico) {
+        this.servico.remove(servico);
     }
 }
