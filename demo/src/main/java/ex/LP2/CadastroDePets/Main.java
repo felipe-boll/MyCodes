@@ -34,6 +34,7 @@ public class Main {
                     listarPets();
                     break;
                 case 6:
+                    limparTela();
                     listarServicos();
                     break;
                 case 7:
@@ -86,8 +87,17 @@ public class Main {
         pet.setNome(scanner.nextLine());
         System.out.print("Raça: ");
         pet.setRaca(scanner.nextLine());
-        System.out.print("Sexo (M/F): ");
-        pet.setSexo(scanner.nextLine());
+        
+        String sexo;
+        do {
+            System.out.print("Sexo (M/F): ");
+            sexo = scanner.nextLine().toUpperCase();
+            if (!sexo.equals("M") && !sexo.equals("F")) {
+                System.out.println("Por favor, digite M para masculino ou F para feminino.");
+            }
+        } while (!sexo.equals("M") && !sexo.equals("F"));
+        pet.setSexo(sexo);
+
         System.out.print("Idade: ");
         pet.setIdade(scanner.nextLine());
         System.out.print("Peso: ");
@@ -102,14 +112,20 @@ public class Main {
         int tutorIndex = scanner.nextInt();
         scanner.nextLine();
 
-        if (tutorIndex >= 0 && tutorIndex < tutores.size()) {
-            Tutor tutor = tutores.get(tutorIndex);
-            pet.setTutor(tutor);
-            tutor.addPet(pet);
-            pets.add(pet);
-            System.out.println("Pet cadastrado com sucesso!");
-        } else {
-            System.out.println("Tutor inválido!");
+        while (true) {
+            if (tutorIndex >= 0 && tutorIndex < tutores.size()) {
+                Tutor tutor = tutores.get(tutorIndex);
+                pet.setTutor(tutor);
+                tutor.addPet(pet);
+                pets.add(pet);
+                System.out.println("Pet cadastrado com sucesso!");
+                break;
+            } else {
+                System.out.println("Tutor inválido! Tente novamente.");
+                System.out.print("Selecione o tutor (número): ");
+                tutorIndex = scanner.nextInt();
+                scanner.nextLine();
+            }
         }
     }
 
@@ -117,7 +133,6 @@ public class Main {
         limparTela();
         System.out.println("\n=== Cadastro de Serviço ===");
         Servico servico = new Servico();
-        
         System.out.print("Descrição: ");
         servico.setDescricao(scanner.nextLine());
         System.out.print("Valor: ");
@@ -137,6 +152,10 @@ public class Main {
         for (Tutor tutor : tutores) {
             System.out.println("Nome: " + tutor.getNome());
             System.out.println("Telefone: " + tutor.getTelefone());
+            System.out.println("CPF: " + tutor.getCpf());
+            System.out.println("Email: " + tutor.getEmail());
+            System.out.println("Idade: " + tutor.getIdade());
+            System.out.println("Endereço: " + tutor.getEndereco());
             System.out.println("--------------------");
         }
     }
@@ -155,7 +174,6 @@ public class Main {
             System.out.println("Sexo: " + pet.getSexo());
             System.out.println("Raça: " + pet.getRaca());
             System.out.println("Tutor: " + (pet.getTutor() != null ? pet.getTutor().getNome() : "Sem tutor"));
-            
             boolean temServico = false;
             for (Servico servico : servicos) {
                 if (servico.getPet() != null && servico.getPet().equals(pet)) {
@@ -175,7 +193,6 @@ public class Main {
         }
     }
     private static void listarServicos() {
-        limparTela();
         System.out.println("\n=== Lista de Serviços ===");
         if (servicos.isEmpty()) {
             System.out.println("Nenhum serviço cadastrado.");
@@ -203,24 +220,50 @@ public class Main {
             System.out.println(i + " - " + pet.getNome() + " (Tutor: " + 
                 (pet.getTutor() != null ? pet.getTutor().getNome() : "Sem tutor") + ")");
         }
+
         System.out.print("Selecione o pet (número): ");
         int petIndex = scanner.nextInt();
         scanner.nextLine();
 
-        if (petIndex < 0 || petIndex >= pets.size()) {
-            System.out.println("Pet inválido!");
-            return;
+        while (true) {
+            if (petIndex >= 0 && petIndex < pets.size()) {
+                break;
+            } else {
+                System.out.println("Por favor, digite um número válido.");
+                System.out.println("\nPets disponíveis:");
+                for (int i = 0; i < pets.size(); i++) {
+                    Pet pet = pets.get(i);
+                    System.out.println(i + " - " + pet.getNome() + " (Tutor: " + 
+                    (pet.getTutor() != null ? pet.getTutor().getNome() : "Sem tutor") + ")");
+                }
+
+                System.out.print("Selecione o pet (número): ");
+                petIndex = scanner.nextInt();
+                scanner.nextLine();
+            }
         }
+        
+        int servicoIndex;
 
         System.out.println("\nServiços disponíveis:");
+        limparTela();
         listarServicos();
         System.out.print("Selecione o serviço (número): ");
-        int servicoIndex = scanner.nextInt();
+            
+        servicoIndex = scanner.nextInt();
         scanner.nextLine();
-
-        if (servicoIndex < 0 || servicoIndex >= servicos.size()) {
-            System.out.println("Serviço inválido!");
-            return;
+                
+        while (true) {
+            if (servicoIndex >= 0 && servicoIndex < servicos.size()) {
+                 break;
+            } else {
+                System.out.println("Serviço Invalido!Por favor, digite um número válido.");
+                System.out.println("\nServiços disponíveis:");
+                listarServicos();
+                System.out.print("Selecione o serviço (número): ");
+                servicoIndex = scanner.nextInt();
+                scanner.nextLine();
+            }
         }
 
         Pet pet = pets.get(petIndex);
@@ -256,4 +299,3 @@ public class Main {
 
   }
 }
-

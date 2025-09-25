@@ -7,25 +7,12 @@ public class Pet {
     private String raca;
     private String sexo;
     private String idade;
-    private ArrayList<String> alergia = new ArrayList<>();
     private double peso;
     private Tutor tutor;
     private ArrayList<Servico> servico = new ArrayList<>();
-    private Situacao situacao;
 
+    public Pet() {
 
-    public Pet(){
-        this.nome = nome;
-        this.raca = raca;
-        this.sexo = sexo;
-        this.idade = idade;
-        this.peso = peso;
-        this.tutor = tutor;
-        this.situacao = situacao.EM_ESPERA;
-    }
-
-    public enum Situacao{
-        EM_ESPERA, JA_ATENDIDO 
     }
 
     public String getNome() {
@@ -76,22 +63,6 @@ public class Pet {
         this.idade = idade;
     }
 
-    public ArrayList<String> getAlergia() {
-        return alergia;
-    }
-
-    public void setAlergia(ArrayList<String> alergia) {
-        this.alergia = alergia;
-    }
-
-    public void addAlergia(String alergia) {
-        this.alergia.add(alergia);
-    }
-
-    public void removeAlergia(String alergia) {
-        this.alergia.remove(alergia);
-    }
-
     public ArrayList<Servico> getServico() {
         return servico;
     }
@@ -100,11 +71,4 @@ public class Pet {
         this.servico = servico;
     }
 
-    public void addServico(Servico servico) {
-        this.servico.add(servico);
-    }
-    
-    public void removeServico(Servico servico) {
-        this.servico.remove(servico);
-    }
 }
