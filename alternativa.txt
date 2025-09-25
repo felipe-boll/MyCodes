@@ -1,21 +1,31 @@
-package ex.LP2.CadastroDePets;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     private static ArrayList<Tutor> tutores = new ArrayList<>();
     private static ArrayList<Pet> pets = new ArrayList<>();
+    private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
     private static ArrayList<Servico> servicos = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         int opcao;
         do {
-            mensagemInicial();
-
+            System.out.println("\n=== Veterinária Debug Pet ===");
+            System.out.println("1 - Cadastrar Tutor");
+            System.out.println("2 - Cadastrar Pet");
+            System.out.println("3 - Cadastrar Funcionário");
+            System.out.println("4 - Cadastrar Serviço");
+            System.out.println("5 - Listar Tutores");
+            System.out.println("6 - Listar Pets");
+            System.out.println("7 - Listar Funcvionários");
+            System.out.println("8 - Listar Serviços");
+            System.out.println("9 - Agendar Serviço");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+            
             opcao = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Limpar o buffer
 
             switch (opcao) {
                 case 1:
@@ -25,18 +35,24 @@ public class Main {
                     cadastrarPet();
                     break;
                 case 3:
-                    cadastrarServico();
+                    cadastrarFuncionario();
                     break;
                 case 4:
-                    listarTutores();
+                    cadastrarServico();
                     break;
                 case 5:
-                    listarPets();
+                    listarTutores();
                     break;
                 case 6:
-                    listarServicos();
+                    listarPets();
                     break;
                 case 7:
+                    listarFuncionarios();
+                    break;
+                case 8:
+                    listarServicos();
+                    break;
+                case 9:
                     agendarServico();
                     break;
                 case 0:
@@ -51,7 +67,6 @@ public class Main {
     }
 
     private static void cadastrarTutor() {
-        limparTela();
         System.out.println("\n=== Cadastro de Tutor ===");
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
@@ -63,7 +78,7 @@ public class Main {
         String telefone = scanner.nextLine();
         System.out.print("Idade: ");
         int idade = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
         System.out.print("Endereço: ");
         String endereco = scanner.nextLine();
 
@@ -73,7 +88,6 @@ public class Main {
     }
 
     private static void cadastrarPet() {
-        limparTela();
         if (tutores.isEmpty()) {
             System.out.println("É necessário cadastrar um tutor primeiro!");
             return;
@@ -92,15 +106,16 @@ public class Main {
         pet.setIdade(scanner.nextLine());
         System.out.print("Peso: ");
         pet.setPeso(scanner.nextDouble());
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
 
+        // Listar tutores para seleção
         System.out.println("\nTutores disponíveis:");
         for (int i = 0; i < tutores.size(); i++) {
             System.out.println(i + " - " + tutores.get(i).getNome());
         }
         System.out.print("Selecione o tutor (número): ");
         int tutorIndex = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
 
         if (tutorIndex >= 0 && tutorIndex < tutores.size()) {
             Tutor tutor = tutores.get(tutorIndex);
@@ -113,8 +128,33 @@ public class Main {
         }
     }
 
+    private static void cadastrarFuncionario() {
+        System.out.println("\n=== Cadastro de Funcionário ===");
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("CPF: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Telefone: ");
+        String telefone = scanner.nextLine();
+        System.out.print("Idade: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpar buffer
+        System.out.print("Endereço: ");
+        String endereco = scanner.nextLine();
+        System.out.print("Cargo: ");
+        String cargo = scanner.nextLine();
+        System.out.print("Salário: ");
+        double salario = scanner.nextDouble();
+        scanner.nextLine(); // Limpar buffer
+
+        Funcionario funcionario = new Funcionario(nome, cpf, email, telefone, idade, endereco, cargo, salario);
+        funcionarios.add(funcionario);
+        System.out.println("Funcionário cadastrado com sucesso!");
+    }
+
     private static void cadastrarServico() {
-        limparTela();
         System.out.println("\n=== Cadastro de Serviço ===");
         Servico servico = new Servico();
         
@@ -122,13 +162,14 @@ public class Main {
         servico.setDescricao(scanner.nextLine());
         System.out.print("Valor: ");
         servico.setValor(scanner.nextDouble());
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
+        System.out.print("Data: ");
+        servico.setData(scanner.nextLine());
         servicos.add(servico);
         System.out.println("Serviço cadastrado com sucesso!");
     }
 
     private static void listarTutores() {
-        limparTela();
         System.out.println("\n=== Lista de Tutores ===");
         if (tutores.isEmpty()) {
             System.out.println("Nenhum tutor cadastrado.");
@@ -136,13 +177,14 @@ public class Main {
         }
         for (Tutor tutor : tutores) {
             System.out.println("Nome: " + tutor.getNome());
+            System.out.println("CPF: " + tutor.getCpf());
             System.out.println("Telefone: " + tutor.getTelefone());
+            System.out.println("Email: " + tutor.getEmail());
             System.out.println("--------------------");
         }
     }
 
     private static void listarPets() {
-        limparTela();
         System.out.println("\n=== Lista de Pets ===");
         if (pets.isEmpty()) {
             System.out.println("Nenhum pet cadastrado.");
@@ -150,38 +192,37 @@ public class Main {
         }
         for (Pet pet : pets) {
             System.out.println("Nome: " + pet.getNome());
+            System.out.println("Raça: " + pet.getRaca());
+            System.out.println("Sexo: " + pet.getSexo());
             System.out.println("Idade: " + pet.getIdade());
             System.out.println("Peso: " + pet.getPeso());
-            System.out.println("Sexo: " + pet.getSexo());
-            System.out.println("Raça: " + pet.getRaca());
             System.out.println("Tutor: " + (pet.getTutor() != null ? pet.getTutor().getNome() : "Sem tutor"));
-            
-            boolean temServico = false;
-            for (Servico servico : servicos) {
-                if (servico.getPet() != null && servico.getPet().equals(pet)) {
-                    if (!temServico) {
-                        System.out.println("Serviços Agendados:");
-                        temServico = true;
-                    }
-                    System.out.println("  - " + servico.getDescricao() + 
-                                     " (R$ " + servico.getValor() + ")" +
-                                     " | Data: " + servico.getData());
-                }
-            }
-            if (!temServico) {
-                System.out.println("Sem serviços agendados");
-            }
             System.out.println("--------------------");
         }
     }
+
+    private static void listarFuncionarios() {
+        System.out.println("\n=== Lista de Funcionários ===");
+        if (funcionarios.isEmpty()) {
+            System.out.println("Nenhum funcionário cadastrado.");
+            return;
+        }
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("CPF: " + funcionario.getCpf());
+            System.out.println("Telefone: " + funcionario.getTelefone());
+            System.out.println("Email: " + funcionario.getEmail());
+            System.out.println("Cargo: " + funcionario.getCargo());
+            System.out.println("--------------------");
+        }
+    }
+
     private static void listarServicos() {
-        limparTela();
         System.out.println("\n=== Lista de Serviços ===");
         if (servicos.isEmpty()) {
             System.out.println("Nenhum serviço cadastrado.");
             return;
         }
-
         for (int i = 0; i < servicos.size(); i++) {
             Servico servico = servicos.get(i);
             System.out.println(i + " - " + servico.getDescricao() + " (R$ " + servico.getValor() + ")");
@@ -189,7 +230,6 @@ public class Main {
     }
 
     private static void agendarServico() {
-        limparTela();
         if (pets.isEmpty() || servicos.isEmpty()) {
             System.out.println("É necessário ter pets e serviços cadastrados para agendar um serviço!");
             return;
@@ -197,6 +237,7 @@ public class Main {
 
         System.out.println("\n=== Agendamento de Serviço ===");
         
+        // Selecionar pet
         System.out.println("\nPets disponíveis:");
         for (int i = 0; i < pets.size(); i++) {
             Pet pet = pets.get(i);
@@ -205,55 +246,32 @@ public class Main {
         }
         System.out.print("Selecione o pet (número): ");
         int petIndex = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
 
         if (petIndex < 0 || petIndex >= pets.size()) {
             System.out.println("Pet inválido!");
             return;
         }
 
+        // Selecionar serviço
         System.out.println("\nServiços disponíveis:");
         listarServicos();
         System.out.print("Selecione o serviço (número): ");
         int servicoIndex = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Limpar buffer
 
         if (servicoIndex < 0 || servicoIndex >= servicos.size()) {
             System.out.println("Serviço inválido!");
             return;
         }
 
+        // Vincular pet ao serviço
         Pet pet = pets.get(petIndex);
         Servico servico = servicos.get(servicoIndex);
         servico.setPet(pet);
         pet.getTutor().addServico(servico);
-
-        System.out.print("Informe a data para agendar: ");
-        servico.setData(scanner.nextLine());
-
+        
+        System.out.println("Serviço agendado com sucesso!");
         System.out.println("Serviço agendado com sucesso!");
     }
-
-    public static void mensagemInicial(){
-            System.out.println("\n=== Veterinária Debug Pet ===");
-            System.out.println("1 - Cadastrar Tutor");
-            System.out.println("2 - Cadastrar Pet");
-            System.out.println("3 - Cadastrar Serviço");
-            System.out.println("4 - Listar Tutores");
-            System.out.println("5 - Listar Pets");
-            System.out.println("6 - Listar Serviços");
-            System.out.println("7 - Agendar Serviço");
-            System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
-    }
-
-      public static void limparTela() {
-        for (int i = 0; i < 40; i++) {
-            System.out.println();
-        }
-        
-        System.out.println("\033\143");
-
-  }
 }
-
