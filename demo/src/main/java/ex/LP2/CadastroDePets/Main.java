@@ -23,7 +23,7 @@ public class Main {
         System.out.print("Idade: ");
         int idade = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Endereço: ");
+        System.out.print("Endereço(Bairro, Rua, Número): ");
         String endereco = scanner.nextLine();
 
         Tutor tutor = new Tutor(nome, cpf, email, telefone, idade, endereco, new ArrayList<>(), new ArrayList<>());
@@ -43,6 +43,8 @@ public class Main {
         
         System.out.print("Nome: ");
         pet.setNome(scanner.nextLine());
+        System.out.print("Espécie: ");
+        pet.setEspecie(scanner.nextLine());
         System.out.print("Raça: ");
         pet.setRaca(scanner.nextLine());
         
@@ -127,10 +129,11 @@ public class Main {
         }
         for (Pet pet : pets) {
             System.out.println("Nome: " + pet.getNome());
+            System.out.println("Raça: " + pet.getRaca());
+            System.out.println("Espécie: " + pet.getEspecie());
             System.out.println("Idade: " + pet.getIdade());
             System.out.println("Peso: " + pet.getPeso());
             System.out.println("Sexo: " + pet.getSexo());
-            System.out.println("Raça: " + pet.getRaca());
             System.out.println("Tutor: " + (pet.getTutor() != null ? pet.getTutor().getNome() : "Sem tutor"));
             boolean temServico = false;
             for (Servico servico : servicos) {
