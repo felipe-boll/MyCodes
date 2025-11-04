@@ -20,6 +20,24 @@ public class ContatoController {
         
     }
 
+    public void excluirContato(int id){
+        if (id <= 0) {
+            System.err.println("id invalido");
+            return;
+        }
+
+        dao.delete(id);
+    }
+
+    public void atualizarContato(Contato contato, int id){
+        if (id <= 0) {
+            System.err.println("id invalido");
+            return;
+        }
+        
+        dao.update(contato);
+    }
+
     
 
 }

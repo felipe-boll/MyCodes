@@ -9,17 +9,18 @@ public class Main {
         System.out.println("Testando");
         Contato contato = new Contato();
         Endereco endereco = new Endereco();
-        endereco.setRua("Rua dos Bobos");
-        endereco.setNumero("zero");
+        endereco.setRua("Rua Lilas");
+        endereco.setNumero("287");
         endereco.setCidade("Cascavel");
         endereco.setEstado("Parana");
 
         ContatoController controller = new ContatoController();
-        contato.setNome("Fulano de Tal aula LPII");
-        contato.setCelular("(45)99999-9898");
-        contato.setEmail("fulano@gmail.com");
+        contato.setNome("Felipe Chaves Boll");
+        contato.setCelular("(45)99831-9393");
+        contato.setEmail("felipechavesboll@gmail.com");
         contato.setEndereco(endereco);
         controller.cadastrarContato(contato);
+
 
     }
 }

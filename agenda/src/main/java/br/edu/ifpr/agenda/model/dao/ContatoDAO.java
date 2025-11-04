@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.edu.ifpr.agenda.model.Contato;
-import br.edu.ifpr.agenda.model.Endereco;
 
 public class ContatoDAO {
     //Create
@@ -61,6 +60,37 @@ public class ContatoDAO {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    public void delete(int id){
+        Connection con = ConnectionFactory.getConnection();
+
+        try{
+            String sql = "delete from contato where id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Contato excluido com sucesso");
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void update(Contato contato){
+        Connection con = ConnectionFactory.getConnection();
+
+        try{
+            String sql = ("update contato set nome=?, celular=?, email=? where id=?");
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, contato.getNome());
+            ps.setString(2, contato.getCelular());
+            ps.setString(3, contato.getEmail());
+            ps.setInt(4, contato.getId());
+            ps.executeUpdate();
+            System.out.println();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
         }
     }
 
