@@ -1,3 +1,8 @@
 Tópico: Disco Rigido (HDD): Funcionamento e Estrutura Fisica
 Grupo: Murilo Ferreira, Felipe Chaves Boll
 
+Enunciado: Porque a leitura de dados em um HDD é mais lenta que a de um SSD ou memória RAM?
+A)
+B)
+C)
+D)
