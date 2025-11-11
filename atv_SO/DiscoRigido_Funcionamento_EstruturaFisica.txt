@@ -2,7 +2,8 @@ Tópico: Disco Rigido (HDD): Funcionamento e Estrutura Fisica
 Grupo: Murilo Ferreira, Felipe Chaves Boll
 
 Enunciado: Porque a leitura de dados em um HDD é mais lenta que a de um SSD ou memória RAM?
-A)
-B)
-C)
-D)
+
+A) Porque o armazenamento é volatil, dificultando o trabalho da maquina de ler novos dados
+B) Porque os pratos não giram rapido o suficiente, necessitando de mais voltas por minuto para ler os dados.
+C) Por causa de sua tecnologia mecanica, fazendo com que as partes fisicas tenham que se mover para acessar os dados.
+D) Porque o acesso aos dados não é direto, sendo necessaário localizar fisicamente onde cada informação esta armazenada.
